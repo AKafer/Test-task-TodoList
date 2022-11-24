@@ -9,10 +9,11 @@ class Task(models.Model):
     text = models.TextField()
     start_date = models.DateTimeField('Дата создания', auto_now_add=True)
     stop_date = models.DateTimeField('Дедлайн')
-    files = models.FileField(
-        upload_to='files/',
-        max_length=100,
-        null=True, blank=True
+    files = models.ForeignKey(
+        'File',
+        on_delete=models.SET_NULL,
+        null=True,
+        default=None
     )
     is_done = models.BooleanField(default=False)
 
@@ -21,3 +22,15 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class File(models.Model):
+    """
+    Класс файла.
+    """
+    file = models.FileField(
+        upload_to='files/',
+        max_length=100,
+        null=True, blank=True
+    )
+    

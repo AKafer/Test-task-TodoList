@@ -1,8 +1,10 @@
 from rest_framework import viewsets
 from django_filters import rest_framework as dfilters
+from rest_framework.parsers import FormParser, MultiPartParser
 
-from task.models import Task
-from .serializers import TaskSerializer
+from task.models import Task, File
+from .serializers import TaskSerializer, FileSerializer
+
 from .filters import StatusFilter
 
 
@@ -12,9 +14,13 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
     filter_backends = (dfilters.DjangoFilterBackend,)
     filterset_class = StatusFilter
-    # permission_classes = (IsAdminOrReadOnly, )
-    # filter_backends = (filters.SearchFilter, DjangoFilterBackend)
-    # search_fields = ('name',)
-    # filterset_fields = ('slug',)
-    # lookup_field = ('slug')
-    # ordering = ('slug',)
+
+
+class FileViewSet(viewsets.ModelViewSet):
+    """Класс представления задач"""
+    queryset = File.objects.all()
+    serializer_class = FileSerializer
+    # parser_classes = (MultiPartParser, FormParser,)
+
+    # def perform_create(self, serializer):
+    #     serializer.save(file=self.request.data.get('file'))
