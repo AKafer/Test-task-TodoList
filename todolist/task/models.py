@@ -10,7 +10,7 @@ class Task(models.Model):
     start_date = models.DateTimeField('Дата создания', auto_now_add=True)
     stop_date = models.DateTimeField('Дедлайн')
     files = models.FileField(
-        upload_to='media/',
+        upload_to='files/',
         max_length=100,
         null=True, blank=True
     )

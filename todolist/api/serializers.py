@@ -3,7 +3,8 @@ from task.models import Task
 from datetime import datetime
 import pytz
 
-utc=pytz.UTC
+
+utc = pytz.UTC
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -18,7 +19,8 @@ class TaskSerializer(serializers.ModelSerializer):
         """Функция определения статуса задачи."""
         now_date = datetime.now()
         if not obj.is_done:
-            if (obj.stop_date).replace(tzinfo=utc) >= now_date.replace(tzinfo=utc):
-                return 'srok'
-            return 'pros'
-        return 'done'
+            if ((obj.stop_date).replace(tzinfo=utc)
+                    >= now_date.replace(tzinfo=utc)):
+                return 'В процессе'
+            return 'Просрочена'
+        return 'Выполнена'
