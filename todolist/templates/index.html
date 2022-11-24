@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    {% load static %}
+    <meta charset="utf-8"> <!-- Кодировка сайта -->
+    <!-- Сайт готов работать с мобильными устройствами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Загружаем фав-иконки -->
+    <link rel="icon" href={% static "img/fav/favicon.ico" %} type="image">
+    <link rel="apple-touch-icon" sizes="180x180" href={% static "img/fav/apple-touch-icon.png" %}>
+    <link rel="icon" type="image/png" sizes="32x32" href={% static "img/fav/favicon-32x32.png" %}>
+    <link rel="icon" type="image/png" sizes="16x16" href={% static "img/fav/favicon-16x16.png" %}>
+    <link rel="manifest" href={% static "img/fav/site.webmanifest" %}>
+    <meta name="theme-color" content="#ffffff">
+    <!-- Подключен файл со стандартными стилями бустрап -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Название вкладки -->
+    <title>TodoList</title>
+    </head>
+  <body>
+    <h1>Главная страница:</h1>
+      {% for task in tasks %}
+        {% comment %} <h3><span><a href="{% url 'space_objects:brigades' city %}">{{ city.name }}</a></span></h3> {% endcomment %}
+        <p> {{ task.title }} </p>
+        {% endfor %}
+      <!-- Предупреждение если материал заблокирован -->
+        
+            <div class="modal-dialog modal-dialog-scrollable modal modal-dialog-centered">
+                <div class="modal-content bg-light">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Предупреждение!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeBlockAlert1"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Материал заблокирован.</p>
+                        <p></p>Для выполнения операций необходимо снять блокировку.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" data-bs-dismiss="modal" class="btn btn-outline-primary btn-sm" id="closeBlockAlert2">Закрыть</a>
+                    </div>
+                </div>
+            </div>
+         
+  </body>
+</html>
