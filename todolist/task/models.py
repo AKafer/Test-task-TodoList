@@ -33,4 +33,3 @@ class File(models.Model):
         max_length=100,
         null=True, blank=True
     )
-    

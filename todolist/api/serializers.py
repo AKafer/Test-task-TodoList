@@ -37,11 +37,10 @@ class TaskSerializer(serializers.ModelSerializer):
 
     def get_link_to_file(self, obj):
         """Функция определения статуса задачи."""
-        print('AAAAAAAAAAAAAAAAAAA')
         if obj.files:
-            print('BBBBBBBBBBBBBBBBBBBBBBB')
             file = get_object_or_404(File, id=obj.files.id)
             print(file.file)
-            return str(f'<a style="color:#FF0000" href="media/{file.file}">Файлик</a>')
+            return str(
+                f'<a style="color:#FF0000" href="media/{file.file}">Файлик</a>'
+            )
         return ''
-        

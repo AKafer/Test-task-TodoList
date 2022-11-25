@@ -147,9 +147,19 @@
               />
             </div>
           </div>
+          <div id="name_done">
+            <div class="input-group input-group-sm mb-3">
+              <label class="input-group-text">Выполнена: </label>
+              <select
+                class="form-select"
+                name="inspection_result"
+                id="select_is_done"
+                required
+              ></select>
+            </div>
           <div id="date">
             <div class="input-group input-group-sm mb-3">
-              <label class="input-group-text">Файл:</label>
+              <label class="input-group-text" id="name_input_file"></label>
               <input
                 class="form-control"
                 type="file"
@@ -162,9 +172,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="CreateTaskOkButton">
-            Создать
-          </button>
+          <button type="button" class="btn btn-primary" id="CreateTaskOkButton"></button>
           <button
             type="button"
             class="btn btn-secondary"
@@ -178,5 +186,4 @@
     </div>
   </div>
 
-  <!-- Модальное окно -->
 </html>
