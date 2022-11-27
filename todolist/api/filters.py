@@ -1,10 +1,9 @@
-from django_filters import rest_framework as dfilters
-
-from task.models import Task
 from datetime import datetime
 
 import pytz
+from django_filters import rest_framework as dfilters
 
+from task.models import Task
 
 utc = pytz.UTC
 

@@ -23,7 +23,7 @@ $(document).ready(function () {
   console.log("***Table***");
   const url = "api/tasks/";
   console.log(url);
-  table = $("#SP_Table").DataTable({
+  let table = $("#SP_Table").DataTable({
     ajax: {
       url: url,
       dataSrc: "",
@@ -86,22 +86,26 @@ $(document).ready(function () {
     $("#edit-create-norm-title").html("Создание новой задачи");
     $("#CreateTaskOkButton").html("Создать");
     $("#name_input_file").html("Новый файл");
+    $("#input_file").prop("disabled", false);
     console.log("CREATE");
     $("#CreatEditTaskModal").fadeIn();
   });
 
   $("#EditTaskButton").on("click", function () {
-    create_edit_mode = "edit";
-    fill_done();
-    $("#edit-create-norm-title").html("Редактирование задачи");
-    $("#CreateTaskOkButton").html("Редактировать");
-    $("#name_input_file").html("Заменить файл");
-    console.log("EDIT");
-    $("#CreatEditTaskModal").fadeIn();
-    $("#input_title").val(row_title);
-    $("#input_text").val(row_text);
-    $("#input_date").val(row_date.slice(0, 10));
-    $("#select_is_done").val(row_is_done.toString());
+    if (table.row(table.$("tr.selected")).index() != undefined) {
+      create_edit_mode = "edit";
+      fill_done();
+      $("#edit-create-norm-title").html("Редактирование задачи");
+      $("#CreateTaskOkButton").html("Редактировать");
+      $("#name_input_file").html("Заменить файл");
+      console.log("EDIT");
+      $("#CreatEditTaskModal").fadeIn();
+      $("#input_title").val(row_title);
+      $("#input_text").val(row_text);
+      $("#input_date").val(row_date.slice(0, 10));
+      $("#input_file").prop("disabled", true);
+      $("#select_is_done").val(row_is_done.toString());
+    }
   });
 
   $("#CeateTaskClose1").on("click", function () {

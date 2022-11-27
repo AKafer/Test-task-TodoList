@@ -1,15 +1,16 @@
-from rest_framework import serializers
-from task.models import Task, File
-from django.shortcuts import get_object_or_404
 from datetime import datetime
-import pytz
 
+import pytz
+from django.shortcuts import get_object_or_404
+from rest_framework import serializers
+
+from task.models import File, Task
 
 utc = pytz.UTC
 
 
 class FileSerializer(serializers.ModelSerializer):
-    """Класс сериализатора задач."""
+    """Класс сериализатора файлов."""
 
     class Meta:
         fields = '__all__'
@@ -36,7 +37,7 @@ class TaskSerializer(serializers.ModelSerializer):
         return 'Выполнена'
 
     def get_link_to_file(self, obj):
-        """Функция определения статуса задачи."""
+        """Функция определения ссылки для файла."""
         if obj.files:
             file = get_object_or_404(File, id=obj.files.id)
             print(file.file)

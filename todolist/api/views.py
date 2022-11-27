@@ -1,10 +1,10 @@
-from rest_framework import viewsets
 from django_filters import rest_framework as dfilters
+from rest_framework import viewsets
 
-from task.models import Task, File
-from .serializers import TaskSerializer, FileSerializer
+from task.models import File, Task
 
 from .filters import StatusFilter
+from .serializers import FileSerializer, TaskSerializer
 
 
 class TaskViewSet(viewsets.ModelViewSet):
@@ -16,6 +16,6 @@ class TaskViewSet(viewsets.ModelViewSet):
 
 
 class FileViewSet(viewsets.ModelViewSet):
-    """Класс представления задач"""
+    """Класс представления файлов"""
     queryset = File.objects.all()
     serializer_class = FileSerializer
